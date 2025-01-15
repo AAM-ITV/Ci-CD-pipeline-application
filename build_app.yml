@@ -1,0 +1,29 @@
+-  name: Build app for terraform
+   hosts: localhost
+   become: yes
+
+   tasks:
+   - name: install docker
+     apt:
+       name: docker.io
+       state: present
+
+   - name: Download the latest version of Docker Compose
+     get_url:
+       url: "https://github.com/docker/compose/releases/download/v2.19.0/docker-compose-{{ >
+       dest: /usr/bin/docker-compose
+       mode: '0755'
+
+   - name: clone repo
+     git:
+       repo: https://github.com/AAM-ITV/App42PaaS-Java-MySQL.git
+       dest: /tmp/App42PaaS-Java-MySQL
+       version: fixit
+       force: yes # re-record repo if exist
+
+   - name: Build Docker images
+     command: docker-compose up -d
+     args:
+       chdir: /tmp/App42PaaS-Java-MySQL
+
+
