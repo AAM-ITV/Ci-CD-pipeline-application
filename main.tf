@@ -45,7 +45,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("/root/.ssh/id_rsa.pub")}"
+    user-data = "${file("/var/lib/jenkins/workspace/deploy-app/cloud-config.txt")}"
   }
 }
 
