@@ -3,6 +3,7 @@ services:
 
   app:
     image: aamitv/app-ci-cd
+    container_name: app-ci-cd
     ports:
       - "8080:8080"
     depends_on:
@@ -10,6 +11,7 @@ services:
 
   db:
     image: mysql:5.7
+    container_name: mysqldb
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: app_db
