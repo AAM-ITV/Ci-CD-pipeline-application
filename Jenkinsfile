@@ -31,7 +31,7 @@ pipeline {
 
                 writeFile file: 'hosts', text: """
                        [prod-stand]
-                       ${prodNodeIp} ansible_user=jenkins ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+                       ${prodNodeIp} ansible_user=jenkins ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ConnectionAttempts=10 -o ConnectTimeout=15'
                     """ // Create Ansible inventory file
                 }
             }
