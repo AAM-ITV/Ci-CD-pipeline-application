@@ -3,6 +3,11 @@
    become: yes
 
    tasks:
+   - name: YUM update
+     ansible.builtin.yum:
+       name: '*'
+       state: latest
+      
    - name: install docker
      apt:
        name: docker.io
