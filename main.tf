@@ -19,7 +19,7 @@ resource "yandex_compute_disk" "boot-disk-1" {
   image_id = "fd866kfu2hbk46j2e21q"
 }
 
-resource "yandex_compute_instance" "prod-stand" {
+resource "yandex_compute_instance" "vm-1" {
   name = "prod-server"
 
   resources {
