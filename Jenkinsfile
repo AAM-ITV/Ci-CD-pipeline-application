@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        YC_CONFIG_PATH = '/var/lib/jenkins/.config/yandex-cloud/config.yaml'
+    }
     stages {
         stage('Build and Push Application') {
             steps {
@@ -23,7 +25,7 @@ pipeline {
          
          steps {
             sh 'terraform init'
-            sh 'terraform apply -auto-approve -debug'
+            sh 'terraform apply -auto-approve'
          }
     }
 
