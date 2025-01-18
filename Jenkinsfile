@@ -44,7 +44,7 @@ pipeline {
        stage('Deploy app') {
         steps {
             script {
-                sh 'ansible-playbook -i hosts prod-stand.yml --private-key=${SSH_KEY_PATH}' // Run playbook on prod-stand'
+                sh 'ansible-playbook -i hosts prod-stand.yml // Run playbook on prod-stand'
                 }
             }
         }
