@@ -12,7 +12,7 @@ users:
     shell: /bin/bash
     sudo: 'ALL=(ALL) NOPASSWD:ALL'
     ssh_authorized_keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCiYJ47jJv7nV07+UHh4kw/jozccFFqz3qhjcn/v/0CC3fCH/GOg3r9RZvNuek+o3eHDex3k5UN03K8I5EVWtY8hc8xdZgdHu2ir1QPsfnM/q4KvRdrVO2NRivPbyQMm+IlJ2HIhkWoyKtwwpeWhvH/F>
+      - ${file("/var/lib/jenkins/.ssh/id_rsa.pub")}
 
 
 
