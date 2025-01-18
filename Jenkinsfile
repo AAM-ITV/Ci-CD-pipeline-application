@@ -19,13 +19,13 @@ pipeline {
 
 
 
-    //    stage('Run instance on yandex-cloud') {
+       stage('Run instance on yandex-cloud') {
          
-    //      steps {
-    //         sh 'terraform init'
-    //         sh 'terraform apply -auto-approve'
-    //      }
-    // }
+         steps {
+            sh 'terraform init'
+            sh 'terraform apply -auto-approve'
+         }
+    }
 
        stage('Generate Ansible Inventory') {
          steps {
