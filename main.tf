@@ -40,8 +40,17 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   metadata = {
-    user-data = "${file("/var/lib/jenkins/workspace/deploy-app/cloud-config.txt")}"
-  }
+    ssh-keys = "jenkins:${file("/var/lib/jenkins/.ssh/id_rsa.pub")}" # Add Jenkins SSH key for access
+    user-data = <<-EOF
+      #cloud-config
+      users:
+        - name: jenkins # Create a user named 'jenkins'
+          sudo: ALL=(ALL) NOPASSWD:ALL 
+          shell: /bin/bash # Set the default shell
+          ssh_authorized_keys:
+            - ${file("/var/lib/jenkins/.ssh/id_rsa.pub")} 
+      EOF
+ }
 }
 
 resource "yandex_vpc_network" "network-1" {
