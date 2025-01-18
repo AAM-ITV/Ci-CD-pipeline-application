@@ -21,35 +21,35 @@ pipeline {
 
 
 
-       stage('Run instance on yandex-cloud') {
+    //    stage('Run instance on yandex-cloud') {
          
+    //      steps {
+    //         sh 'terraform init'
+    //         sh 'terraform apply -auto-approve'
+    //      }
+    // }
+
+       stage('Generate Ansible Inventory') {
          steps {
-            sh 'terraform init'
-            sh 'terraform apply -auto-approve'
-         }
-    }
+            script {
+                def prodNodeIp = sh(script: 'terraform output -raw prod_stand_ip', returnStdout: true).trim() // Get production node IP
 
-       // stage('Generate Ansible Inventory') {
-       //   steps {
-       //      script {
-       //          def prodNodeIp = sh(script: 'terraform output -raw prod_stand_ip', returnStdout: true).trim() // Get production node IP
-
-       //          writeFile file: 'hosts', text: """
-       //                 [prod-stand]
-       //                 ${prodNodeIp} ansible_user=jenkins ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-       //              """ // Create Ansible inventory file
-       //          }
-       //      }
-       //  }
+                writeFile file: 'hosts', text: """
+                       [prod-stand]
+                       ${prodNodeIp} ansible_user=jenkins ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+                    """ // Create Ansible inventory file
+                }
+            }
+        }
        
  
-       // stage('Deploy app') {
-       //  steps {
-       //      script {
-       //          sh 'ansible-playbook -i hosts prod-stand.yml --private-key=${SSH_KEY_PATH}' // Run playbook on prod-stand'
-       //          }
-       //      }
-       //  }
+       stage('Deploy app') {
+        steps {
+            script {
+                sh 'ansible-playbook -i hosts prod-stand.yml --private-key=${SSH_KEY_PATH}' // Run playbook on prod-stand'
+                }
+            }
+        }
     }
 }
 //  #######################################################################################################   
