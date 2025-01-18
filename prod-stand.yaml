@@ -3,11 +3,9 @@
    become: yes
 
    tasks:
-   - name: APT update
-     ansible.builtin.apt:
-       name: '*'
-       state: latest
-      
+   apt:
+      update_cache: yes
+        
    - name: install docker
      apt:
        name: docker.io
