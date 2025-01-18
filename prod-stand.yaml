@@ -3,8 +3,9 @@
    become: yes
 
    tasks:
-   apt:
-      update_cache: yes
+   - name: Uptade apt
+      apt:
+       update_cache: yes
         
    - name: install docker
      apt:
