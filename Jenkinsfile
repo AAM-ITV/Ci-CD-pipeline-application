@@ -19,32 +19,32 @@ pipeline {
 
 
 
-       stage('Run instance on yandex-cloud') {
+    //    stage('Run instance on yandex-cloud') {
          
-         steps {
-            sh 'terraform init'
-            sh 'terraform apply -auto-approve'
-         }
-    }
+    //      steps {
+    //         sh 'terraform init'
+    //         sh 'terraform apply -auto-approve'
+    //      }
+    // }
 
-       stage('Generate Ansible Inventory') {
-         steps {
-            script {
-                def prodNodeIp = sh(script: 'terraform output -raw external_ip_address_prod-stand', returnStdout: true).trim() // Get production node IP
+    //    stage('Generate Ansible Inventory') {
+    //      steps {
+    //         script {
+    //             def prodNodeIp = sh(script: 'terraform output -raw external_ip_address_prod-stand', returnStdout: true).trim() // Get production node IP
 
-                writeFile file: 'hosts', text: """
-                       [prod-stand]
-                       ${prodNodeIp} ansible_user=jenkins ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-                    """ // Create Ansible inventory file
-                }
-            }
-        }
+    //             writeFile file: 'hosts', text: """
+    //                    [prod-stand]
+    //                    ${prodNodeIp} ansible_user=jenkins ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+    //                 """ // Create Ansible inventory file
+    //             }
+    //         }
+    //     }
        
  
        stage('Deploy app') {
         steps {
             script {
-                sh 'ansible-playbook -i hosts prod-stand.yml // Run playbook on prod-stand'
+                sh 'ansible-playbook -i hosts prod-stand.yml 
                 }
             }
         }
