@@ -32,7 +32,7 @@ pipeline {
        stage('Generate Ansible Inventory') {
          steps {
             script {
-                def prodNodeIp = sh(script: 'terraform output -raw prod_stand_ip', returnStdout: true).trim() // Get production node IP
+                def prodNodeIp = sh(script: 'terraform output -raw external_ip_address_prod-stand', returnStdout: true).trim() // Get production node IP
 
                 writeFile file: 'hosts', text: """
                        [prod-stand]
