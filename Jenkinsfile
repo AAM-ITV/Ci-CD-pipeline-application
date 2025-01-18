@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {
-        YC_CONFIG_PATH = '/var/lib/jenkins/.config/yandex-cloud/config.yaml'
-    }
+
     stages {
         // stage('Build and Push Application') {
         //     steps {
