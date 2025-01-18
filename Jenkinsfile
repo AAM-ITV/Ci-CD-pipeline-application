@@ -15,8 +15,8 @@ pipeline {
                 }
             }
         }
-    }
-}
+    
+
 
 
        stage('Run instance on yandex-cloud') {
