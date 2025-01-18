@@ -3,8 +3,8 @@
    become: yes
 
    tasks:
-   - name: YUM update
-     ansible.builtin.yum:
+   - name: APT update
+     ansible.builtin.apt:
        name: '*'
        state: latest
       
