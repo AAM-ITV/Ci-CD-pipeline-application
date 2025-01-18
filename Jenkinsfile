@@ -44,7 +44,7 @@ pipeline {
        stage('Deploy app') {
         steps {
             script {
-                sh 'ansible-playbook -i hosts prod-stand.yml 
+                sh 'ansible-playbook -i hosts prod-stand.yaml'
                 }
             }
         }
