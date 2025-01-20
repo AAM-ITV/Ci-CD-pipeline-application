@@ -8,10 +8,10 @@ terraform {
 }
 
 provider "yandex" {
-  token     = "y0_AgAAAAAGKyuaAATuwQAAAAEL6APzAABFyWvjhZVO46RIP6-7enyK-JzXvg"
-  cloud_id  = "b1gpl53sdobvpahkcboc"
-  folder_id = "b1ge0llpg1gnn3hpv1n4"
-  zone      = "ru-central1-b"
+  token     = "your_token"
+  cloud_id  = "your_ cloud_id"
+  folder_id = "your_folder_id"
+  zone      = "your_zone"
 }
 
 resource "yandex_compute_disk" "boot-disk-1" {
