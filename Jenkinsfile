@@ -7,7 +7,7 @@ pipeline {
                 script {
                     docker.image('docker:27.4.0').inside('--user root -v /var/run/docker.sock:/var/run/docker.sock') {
                         sh """   
-                            docker login -u aamitv -p dckr_pat_6cNg7aFWXXGcJ8YpWouSf0kgxfs https://index.docker.io/v1/  
+                            docker login -u your_login -p yuor_token https://index.docker.io/v1/  
                             docker build -f /var/lib/jenkins/workspace/deploy-app/Dockerfile -t aamitv/app-ci-cd .
                             docker push aamitv/app-ci-cd
                         """
